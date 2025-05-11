@@ -1,0 +1,10 @@
+---
+- name: Install Nginx
+  hosts: all
+  remote_user: ubuntu
+  become: yes
+
+  roles:
+  - nginx   ##name of the folder inside role folder, the folder containing the folder tasks
+
+  ##rename this file to lamp or provision since that's what will be installed and keep by the end; not nginx 

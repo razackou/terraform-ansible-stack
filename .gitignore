@@ -1,0 +1,22 @@
+# Terraform state files
+*.tfstate
+*.tfstate.*
+
+# Crash logs
+crash.log
+
+# Terraform plan files
+*.tfplan
+
+# Sensitive override files
+*.tfvars
+*.tfvars.json
+
+# Backup files
+*.backup
+
+# .terraform directory (plugins, modules, etc.)
+.terraform/
+
+# Lock file (optional—keep it if you want to lock provider versions)
+.terraform.lock.hcl
