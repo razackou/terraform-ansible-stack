@@ -1,0 +1,63 @@
+---
+
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
+    - name: Install Apache
+      apt:
+        name: apache2
+        state: present
+
+    - name: Ensure Apache is running
+      systemd:
+        name: apache2
+        state: started
+        enabled: yes
+
+    - name: Install MySQL server
+      debconf:
+        name: "mysql-server"
+        question: "mysql-server/root_password"
+        value: "{{ mysql_root_password }}"
+        vtype: "password"
+
+    - name: Confirm MySQL root password again
+      debconf:
+        name: "mysql-server"
+        question: "mysql-server/root_password_again"
+        value: "{{ mysql_root_password }}"
+        vtype: "password"
+
+    - name: Install MySQL package
+      apt:
+        name: mysql-server
+        state: present
+
+    - name: Ensure MySQL is running
+      systemd:
+        name: mysql
+        state: started
+        enabled: yes
+
+    - name: Install PHP and required modules
+      apt:
+        name: "{{ php_packages }}"
+        state: present
+
+    - name: Restart Apache to load PHP
+      systemd:
+        name: apache2
+        state: restarted
+
+    - name: Create a PHP info page
+      copy:
+        dest: /var/www/html/info.php
+        content: "<?php phpinfo(); ?>"
+        mode: '0644'
+
+
+
+
+
+##rename this file to lamp and even folder since that's what will be installed and keep by the end; not nginx 

@@ -1,0 +1,23 @@
+---
+- name: Set up a LAMP stack on Ubuntu
+  hosts: all
+  become: yes
+
+  vars:
+    mysql_root_password: "StrongMySQLRootPassword123"  # Change this!
+    php_packages:
+      - php
+      - php-mysql
+      - libapache2-mod-php
+      - php-cli
+      - php-curl
+      - php-gd
+      - php-mbstring
+      - php-xml
+      - php-xmlrpc
+      - php-zip
+
+  roles:
+  - lamp
+
+  ##rename this file to lamp or provision since that's what will be installed and keep by the end; not nginx 

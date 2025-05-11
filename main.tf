@@ -55,7 +55,7 @@ resource "aws_instance" "nginx" { ##rename the nginx to apache
     }
   }
   provisioner "local-exec" {
-    command = "ansible-playbook  -i ${aws_instance.nginx.public_ip}, --private-key ${local.private_key_path} -u ${local.ssh_user} nginx.yaml"
+    command = "ansible-playbook  -i ${aws_instance.nginx.public_ip}, --private-key ${local.private_key_path} -u ${local.ssh_user} lamp.yaml"
   }
 }
 
