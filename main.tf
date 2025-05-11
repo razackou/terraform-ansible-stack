@@ -1,6 +1,8 @@
 locals {
   vpc_id           = "vpc-bc2bfac1"
   subnet_id        = "subnet-889b18a9"
+  ami_id           = "ami-084568db4383264d4"
+  instance_type_id = "t2.micro"
   ssh_user         = "ubuntu"
   key_name         = "myKeyPair"
   private_key_path = "myKeyPair.pem"
@@ -37,9 +39,9 @@ resource "aws_security_group" "lamp" {
 }
 
 resource "aws_instance" "lamp" {
-  ami                         = "ami-084568db4383264d4"
+  ami                         = local.ami_id
   subnet_id                   = local.subnet_id
-  instance_type               = "t2.micro"
+  instance_type               = local.instance_type_id
   associate_public_ip_address = true
   security_groups             = [aws_security_group.lamp.id]
   iam_instance_profile        = aws_iam_instance_profile.cw_agent_profile.name

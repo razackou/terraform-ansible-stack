@@ -55,7 +55,6 @@
         content: "<?php phpinfo(); ?>"
         mode: '0644'
 
-# CloudWatch Agent Setup
     - name: Download CloudWatch Agent package
       get_url:
         url: https://s3.amazonaws.com/amazoncloudwatch-agent/ubuntu/amd64/latest/amazon-cloudwatch-agent.deb
