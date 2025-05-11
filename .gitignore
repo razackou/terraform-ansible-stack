@@ -1,20 +1,10 @@
-# Terraform state files
 terraform.tfstate
 terraform.tfstate.backup
-
+myKeyPair.pem
 *.tfstate
 *.tfstate.*
 .terraform/
 .terraform.lock.hcl
-
-# Terraform plan files
 *.tfplan
-
-# .terraform directory (plugins, modules, etc.)
-.terraform/
-
-# Lock file (optional—keep it if you want to lock provider versions)
 .terraform.lock.hcl
-
-# security key
 *.pem
