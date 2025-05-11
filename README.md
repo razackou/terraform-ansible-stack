@@ -92,11 +92,20 @@ terraform apply
 
 This will create the VPC, EC2 instance, Security Group, AMI and CloudWatch resources. Also, Ansible playbook will be run automatically to configure the LAMP stack and install the CloudWatch agent on the EC2 instance.
 
+![1-terra-output](https://github.com/user-attachments/assets/8a1381ad-d88d-459c-b197-cf6aaefaaa8e)
+
 ### 6. Access the Application
 
 - **Web Application**: Open the EC2 instance's public IP in a browser (`http://<ec2-public-ip>`).
+![2-test-page](https://github.com/user-attachments/assets/74ace597-d54f-471e-87c5-024b87573c3b)
+
 - **Check the whole stack**: Open the EC2 instance's public IP in a browser (`http://<ec2-public-ip>/info.php`)
+![3-phpinfo](https://github.com/user-attachments/assets/83562c4b-68b5-4b03-904b-00b40c100cca)
+
 - **CloudWatch Dashboard**: Navigate to the AWS CloudWatch console, select "Dashboards," and view the custom dashboard (`LAMP-Monitoring`).
+![4-monitor](https://github.com/user-attachments/assets/693d7d43-b568-42c2-9c5f-7ba83d10c5ec)
+
+![5-dash](https://github.com/user-attachments/assets/14d88ef2-179d-4882-b4c2-d723973827d5)
 
 ## Monitoring and Dashboard
 
@@ -113,6 +122,8 @@ terraform destroy
 ```
 
 Confirm the destruction when prompted.
+
+![6-destroy](https://github.com/user-attachments/assets/d0d02015-4237-4666-99a5-895611eab2ce)
 
 ## Future Improvements
 
