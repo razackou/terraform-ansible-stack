@@ -18,3 +18,5 @@ aws ec2 create-key-pair \
 chmod 400 myKeyPair.pem
 
 3. Change MySQL root password
+
+4. You can add SNS topic ARN to receive alerts by email.
