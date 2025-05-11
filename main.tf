@@ -1,17 +1,17 @@
 locals {
-  vpc_id           = "vpc-bc2bfac1" ##no vpc so that it will use the defaut vpc  # of finally keep it like that
+  vpc_id           = "vpc-bc2bfac1"
   subnet_id        = "subnet-889b18a9"
   ssh_user         = "ubuntu"
-  key_name         = "themyKeyPair"     ##"EC2-keyPair"
-  private_key_path = "themyKeyPair.pem" ##"keyPair.pem" ##create a new keypair while uploading
+  key_name         = "myKeyPair"
+  private_key_path = "myKeyPair.pem"
 }
 
 provider "aws" {
   region = "us-east-1"
 }
 
-resource "aws_security_group" "nginx" { ##rename the nginx to apache
-  name   = "nginx_access"               ##rename this as lamp access of something else
+resource "aws_security_group" "lamp" {
+  name   = "lamp_access"
   vpc_id = local.vpc_id
 
   ingress {
@@ -36,12 +36,12 @@ resource "aws_security_group" "nginx" { ##rename the nginx to apache
   }
 }
 
-resource "aws_instance" "nginx" { ##rename the nginx to apache
+resource "aws_instance" "lamp" {
   ami                         = "ami-084568db4383264d4"
-  subnet_id                   = local.subnet_id #"subnet-889b18a9"
+  subnet_id                   = local.subnet_id
   instance_type               = "t2.micro"
   associate_public_ip_address = true
-  security_groups             = [aws_security_group.nginx.id]
+  security_groups             = [aws_security_group.lamp.id]
   key_name                    = local.key_name
 
   provisioner "remote-exec" {
@@ -51,14 +51,14 @@ resource "aws_instance" "nginx" { ##rename the nginx to apache
       type        = "ssh"
       user        = local.ssh_user
       private_key = file(local.private_key_path)
-      host        = aws_instance.nginx.public_ip
+      host        = aws_instance.lamp.public_ip
     }
   }
   provisioner "local-exec" {
-    command = "ansible-playbook  -i ${aws_instance.nginx.public_ip}, --private-key ${local.private_key_path} -u ${local.ssh_user} lamp.yaml"
+    command = "ansible-playbook  -i ${aws_instance.lamp.public_ip}, --private-key ${local.private_key_path} -u ${local.ssh_user} lamp_provision.yaml"
   }
 }
 
-output "nginx_ip" {
-  value = aws_instance.nginx.public_ip
+output "lamp_ip" {
+  value = aws_instance.lamp.public_ip
 }

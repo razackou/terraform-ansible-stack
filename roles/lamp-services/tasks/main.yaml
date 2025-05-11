@@ -1,5 +1,4 @@
 ---
-
     - name: Update apt cache
       apt:
         update_cache: yes
@@ -50,14 +49,8 @@
         name: apache2
         state: restarted
 
-    - name: Create a PHP info page
+    - name: PHP info page
       copy:
         dest: /var/www/html/info.php
         content: "<?php phpinfo(); ?>"
         mode: '0644'
-
-
-
-
-
-##rename this file to lamp and even folder since that's what will be installed and keep by the end; not nginx 

@@ -4,7 +4,7 @@
   become: yes
 
   vars:
-    mysql_root_password: "StrongMySQLRootPassword123"  # Change this!
+    mysql_root_password: "StrongMySQLRootPassword123"  # Temporary, Change this!
     php_packages:
       - php
       - php-mysql
@@ -18,6 +18,4 @@
       - php-zip
 
   roles:
-  - lamp
-
-  ##rename this file to lamp or provision since that's what will be installed and keep by the end; not nginx 
+  - lamp-services

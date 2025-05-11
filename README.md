@@ -16,3 +16,5 @@ aws ec2 create-key-pair \
 2. Secure the key file
 
 chmod 400 myKeyPair.pem
+
+3. Change MySQL root password
