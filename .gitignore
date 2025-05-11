@@ -10,3 +10,6 @@ terraform.tfstate.backup
 
 # Lock file (optional—keep it if you want to lock provider versions)
 .terraform.lock.hcl
+
+# security key
+themyKeyPair.pem
