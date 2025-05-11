@@ -2,6 +2,11 @@
 terraform.tfstate
 terraform.tfstate.backup
 
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+
 # Terraform plan files
 *.tfplan
 
@@ -12,4 +17,4 @@ terraform.tfstate.backup
 .terraform.lock.hcl
 
 # security key
-themyKeyPair.pem
+*.pem
